@@ -9,7 +9,7 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("coRoutines");
+        StartCoroutine(coRoutines(4f));
     }
 
     // Update is called once per frame
@@ -18,10 +18,10 @@ public class NewBehaviourScript : MonoBehaviour
         
     }
 
-    IEnumerator coRoutines()
+    IEnumerator coRoutines(float wait)
     {
         Debug.Log("Started");
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(wait);
         Debug.Log("Ended");
     }
 }
