@@ -10,6 +10,7 @@ using Debug = UnityEngine.Debug;
 public class NewBehaviourScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    IEnumerator RefCoroutine;
     void Start()
     {
         string[] message = { "This", "is", "sample", "test" };
@@ -22,7 +23,12 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(Move(Random.onUnitSphere * 5, 10));
+            if(RefCoroutine!=null)
+            {
+                StopCoroutine(RefCoroutine);
+            }
+             RefCoroutine = Move(Random.onUnitSphere * 5, 10);
+            StartCoroutine(RefCoroutine);
         }
     }
 
