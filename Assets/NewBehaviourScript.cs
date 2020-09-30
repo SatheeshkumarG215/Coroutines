@@ -10,12 +10,14 @@ using Debug = UnityEngine.Debug;
 public class NewBehaviourScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Transform[] path;
     IEnumerator RefCoroutine;
     void Start()
     {
         string[] message = { "This", "is", "sample", "test" };
         
         StartCoroutine(coRoutines(2f,message));
+        StartCoroutine(Followpath());
     }
 
     // Update is called once per frame
@@ -32,11 +34,19 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
+    IEnumerator Followpath()
+    {
+        foreach(Transform ap in path)
+        {
+            yield return StartCoroutine(Move(ap.position, 10));
+        }
+    }
+
     IEnumerator Move(Vector3 destination, float speed)
     {
         while (transform.position != destination)
         {
-            transform.position = Vector3.MoveTowards(transform.position, destination, speed = Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
             yield return null;
         }
     }
