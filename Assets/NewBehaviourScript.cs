@@ -9,7 +9,9 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(coRoutines(4f));
+        string[] message = { "This", "is", "sample", "test" };
+        
+        StartCoroutine(coRoutines(4f,message));
     }
 
     // Update is called once per frame
@@ -18,10 +20,14 @@ public class NewBehaviourScript : MonoBehaviour
         
     }
 
-    IEnumerator coRoutines(float wait)
+    IEnumerator coRoutines(float wait,string [] message)
     {
-        Debug.Log("Started");
+        //Debug.Log("Started");
+        foreach(string ms in message)
+        {
+            Debug.Log(ms);
         yield return new WaitForSeconds(wait);
-        Debug.Log("Ended");
+        }
+        //Debug.Log("Ended");
     }
 }
